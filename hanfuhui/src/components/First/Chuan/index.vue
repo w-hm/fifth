@@ -1,14 +1,14 @@
 <template>
     
-     <div class="fazan">
-             <img src="https://pic.hanfugou.com/web/2019/8/9/11/65672f483ec54733bfdea19136aaef2a.png_min.jpg" alt="">          
-            <div class="fazan_products" ref="fzan"> 
-                <div class="fazan_scroll" >              
-                    <div class="fazan_con" v-for="fzan of fazanList" :key="fzan.id">
+     <div class="chuan">
+             <img src="https://pic.hanfugou.com/web/2019/8/3/1/0350d0715ba44443abad59bc23a2c77a.png_min.jpg" alt="">          
+            <div class="chuan_products" ref="fzan"> 
+                <div class="chuan_scroll" >              
+                    <div class="chuan_con" v-for="fzan of fazanList" :key="fzan.id">
                         <img :src="fzan.imgUrl" alt="">
                         <span>¥{{fzan.price.toFixed(2)}}</span>
                     </div> 
-                      <div class="fazan_con">
+                      <div class="chuan_con">
                             <img src="https://m.hanfugou.com/Image/ban_more.png" alt="">              
                         </div>
                 </div>  
@@ -20,7 +20,7 @@
 import BScroll from "better-scroll"
 import axios from "axios"
 export default {
-    name:"Fzan",
+    name:"Chuan",
     data(){
         return{
             fazanList:[]
@@ -56,31 +56,30 @@ export default {
 }
 </script>
 <style scoped>
-.fazan_products{
+.chuan_products{
     overflow: hidden;
 }
-    .fazan{
+ .chuan{
     background-color: #fff;
-    margin-top:0.3rem; 
-    padding:0.25rem;
+    padding:0 0.25rem 0.25rem;
     width: 100%;
 }
-.fazan_scroll{
+.chuan_scroll{
     display:flex;
     width: 24rem;
     padding-top:0.1rem;
 }
-.fazan_con{
+.chuan_con{
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     width: 2rem;
     margin-right: 0.2rem;
 }
-.fazan_con img{
+.chuan_con img{
     border-radius: 10px;
 }
-.fazan_con span{
+.chuan_con span{
     display: flex;
     justify-content: center;
     padding: 0.1rem;

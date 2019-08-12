@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div class="wrap">
         Searchsss
     </div>
 </template>
