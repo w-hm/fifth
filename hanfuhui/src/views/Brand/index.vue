@@ -31,7 +31,7 @@
     </div>
 </template>
 <script>
-const axios=require("axios")
+const axios=require("axios");
 export default {
     name:"Brand",
     data:function(){
@@ -64,7 +64,7 @@ export default {
     created:function(){
         // console.log(this._data.mainlist)
         var that=this;
-        axios.get("http://192.168.52.94:8080/hanfugou/HotStore").then(function(res){
+        axios.get("http://192.168.52.94:8080/hanfugou/HotStore?storeType="+"rmdp").then(function(res){
             console.log(res.data)
             // console.log(that._data.mainlist)
             that._data.mainlist=res.data
