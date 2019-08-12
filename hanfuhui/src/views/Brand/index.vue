@@ -1,11 +1,11 @@
 <template>
     <div class="wrap">
        <ul class="titleul">
-           <li v-for="(item,index) in titlelist" :key="index" v-on:click="libt(index)" :class="item.flag">{{item.title}}</li>
+           <li v-for="(item,index) in titlelist" :key="index" v-on:click="libt(item,index)" :class="item.flag">{{item.title}}</li>
        </ul>
        <div class="Brandmain">
            <div class="store" v-for="item in mainlist" :key="item.id">
-               <div class="storename" v-on:click="gostore">
+               <div class="storename" v-on:click="gostore(item)">
                    <div class="img">
                        <img :src="item.storeIcon" alt="">
                    </div>
@@ -36,11 +36,11 @@ export default {
     name:"Brand",
     data:function(){
         return {
-        titlelist:[{title:"热门店铺",flag:"special"},
-                {title:"最新入驻", flag:false},
-                {title:"白菜商家",flag:false},
-                {title:"中档消费",flag:false},
-                {title:"高档定制",flag:false}],
+        titlelist:[{title:"热门店铺",flag:"special",ty:"rmdp"},
+                {title:"最新入驻", flag:false,ty:"zxrz"},
+                {title:"白菜商家",flag:false,ty:"bcsj"},
+                {title:"中档消费",flag:false,ty:"zdxf"},
+                {title:"高档定制",flag:false,ty:"gddz"}],
         flag:false,
         liclass:"",
         mainlist:[]
@@ -50,15 +50,25 @@ export default {
         
     },
     methods:{
-        libt(index){
+        libt(item,index){
             this.titlelist.forEach(item => {
                 item.flag=""
             });
             this.titlelist[index].flag="special"
+            console.log(item.ty)
+             var that=this;
+        axios.get("http://192.168.52.94:8080/hanfugou/HotStore?storeType="+item.ty).then(function(res){
+            console.log(res.data)
+            // console.log(that._data.mainlist)
+            that._data.mainlist=res.data
+        })
+
+
         },
-        gostore(){
-            this.$router.push({path:"store?id="+123})
-            console.log(11111)
+        gostore(item){
+            console.log(item)
+            this.$router.push({path: `store/${item.storeId}`})
+            // console.log(11111)
         }
     },
     created:function(){
