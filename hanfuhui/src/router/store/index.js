@@ -1,5 +1,5 @@
 export default {
-    path:"/store",
+    path:"/store/:storeId",
     component:()=>import("@/views/Brand/store"),
    
 }
