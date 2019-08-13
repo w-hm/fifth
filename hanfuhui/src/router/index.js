@@ -7,6 +7,9 @@ import Twohand from "./Twohand"
 import Mine from "./Mine"
 import Shoppingcart from "./Shoppingcart"
 import store from "./store"
+import list from "./list"
+import detail from "./detail"
+
 
 
 Vue.use(Router)
@@ -16,11 +19,19 @@ export default new Router({
   base: process.env.BASE_URL,
   routes: [
     store,
+    list,
+    detail,
     First,
     Search,
     Brand,
     Twohand,
     Shoppingcart,
-    Mine
+    Mine,
+
+    
+    {
+      path:"*",
+      redirect:"first"
+    }
   ]
 })

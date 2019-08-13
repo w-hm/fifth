@@ -1,6 +1,8 @@
 .DS_Store
 node_modules
+/mock
 /dist
+vue.config.js
 
 # local env files
 .env.local

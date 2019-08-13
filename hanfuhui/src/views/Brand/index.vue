@@ -7,7 +7,7 @@
        <div class="Brandmain">
            <div class="store" v-for="item in mainlist" :key="item.id">
                <div class="storename" v-on:click="gostore(item)">
-                   <div class="img">
+                   <div class="img" >
                        <img :src="item.storeIcon" alt="">
                    </div>
                    <div class="name">
@@ -20,7 +20,7 @@
                </div>
                <div class="storegoods">
                    <div v-for="(goods,index) in item.goods" :key="index">
-                       <div class="img">
+                       <div class="img" v-on:click="imgbt(goods.id)">
                            <img  alt="" :src="goods.goodsPicture">
                            <p>{{goods.goodsName}}</p>
                            <div>￥{{goods.goodsPrice}}</div>
@@ -74,7 +74,7 @@ export default {
             console.log(item)
             this.$router.push({path: `store/${item.storeId}`})
             // console.log(11111)
-        }
+        },
     },
 
     created:function(){

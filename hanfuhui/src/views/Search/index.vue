@@ -1,11 +1,16 @@
 
 <template>
+<<<<<<< HEAD
 <div class="wrap">
     <div >
         <div>
              <input type="text">
         </div>
          <button>搜索</button>
+=======
+    <div class="wrap">
+        Searchsss
+>>>>>>> a2ed495fb2d32f07226c28bdfa461522a5e11bee
     </div>
         <ul class="title_ul">
            <li v-for="(item,index) in titlelist" :key="index" v-on:click="libt(item,index)" :class="item.flag">{{item.title}}</li>
