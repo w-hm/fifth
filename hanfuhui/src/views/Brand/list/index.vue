@@ -5,7 +5,7 @@
                 <li v-on:click="libt(index)" :class="item.class" v-for="(item,index) in listyle" :key="index">{{item.tp}}</li>
             </ul>
             <div class="listimg">
-                <div class="img" v-for="(item,index) in store" :key="index" >
+                <div class="img" v-for="(item,index) in store" :key="index" v-on:click="godetail(item)">
                     <img :src="item.goodsPicture" alt="">
                     <p>{{item.goodsName}}</p>
                     <h3><span>￥</span>{{item.goodsPrice}}</h3>
@@ -35,8 +35,8 @@ export default {
 
 
      created(){
+        console.log(this.$route.param)
          let that=this
-         console.log(this.$route.params.storeId)
          axios.get("http://192.168.52.90:8080/hanfugou/InChest?goodsType=qx").then(function(res){
              console.log(res.data)
              that._data.store=res.data
@@ -44,6 +44,10 @@ export default {
          })
      },
       methods:{
+          godetail(item){
+              console.log(item.goodsID)
+              this.$router.push({path:'/detail',query:{goodsid:item.goodsID}});
+          },
           libt(index){
 
             //   console.log(this._data.listyle)

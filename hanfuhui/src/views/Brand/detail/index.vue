@@ -18,13 +18,21 @@
                   <li>库存 13</li>
                   <li>78 人种草</li>
               </ul>
+              <div class="p2">
+                  <p><span></span>60天内发货 <span></span> 正品保证</p>
+                  <span>不支持七天无理由退款</span>
+              </div>
            </div>
        </div>
     </div>
 </template>
 <script>
 export default {
-    name:"detail"
+    name:"detail",
+     methods:{},
+     created:function(){
+         console.log(this.$route.query.goodsid)
+     }
 }
 </script>
 <style detail>
@@ -60,7 +68,7 @@ export default {
     .detail{
 
     }
-    .detail p{
+    .detail>p{
         padding: 0.2rem;
         color: #555555;
     }
@@ -72,11 +80,19 @@ export default {
     }
     .detail ul{
         display: flex;
+        margin:0 0.2rem;
+        border-bottom:2px solid #dcdcdc;
+        color: #000;
     }
     .detail ul li{
+        text-align: left;
         list-style: none;
         flex: 1;
         text-align: center;
-        color: #555555;
+        color: #bcbcbc;
+        padding: 0.15rem 0;
+    }
+    .detail .p2 p{
+        color: #555555
     }
 </style>

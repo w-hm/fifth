@@ -18,8 +18,8 @@
                     </div>
                </div>
                <div class="storegoods">
-                   <div v-for="(goods,index) in item.goods" :key="index">
-                       <div class="img" v-on:click="imgbt(goods.id)">
+                   <div v-for="(goods,index) in item.goods" :key="index" v-on:click="godetail(goods)">
+                       <div class="img">
                            <img  alt="" :src="goods.goodsPicture">
                            <p>{{goods.goodsName}}</p>
                            <div>￥{{goods.goodsPrice}}</div>
@@ -50,6 +50,10 @@ export default {
         
     },
     methods:{
+        godetail(item){
+              console.log(item.goodsID)
+              this.$router.push({path:'/detail',query:{goodsid:item.goodsID}});
+          },
         libt(item,index){
             this.titlelist.forEach(item => {
                 item.flag=""
