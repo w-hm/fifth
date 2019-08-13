@@ -17,11 +17,11 @@
                 <li v-on:click="libt(index)" :class="item.class" v-for="(item,index) in listyle" :key="index">{{item.tp}}</li>
             </ul>
             <div class="listimg">
-                <div class="img" v-for="(item,index) in store.showGoods" :key="index" >
-                <img :src="item.goodsPicture" alt="">
-                <p>{{item.goodsName}}</p>
-                <h3><span>￥</span>{{item.goodsPrice}}<i>种草数:{{item.goodsCollect}}</i></h3>
-            </div>
+                <div class="img" v-for="(item,index) in store.showGoods" :key="index" v-on:click="godetail(item)" >
+                    <img :src="item.goodsPicture" alt="">
+                    <p>{{item.goodsName}}</p>
+                    <h3><span>￥</span>{{item.goodsPrice}}<i>种草数:{{item.goodsCollect}}</i></h3>
+                </div>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@ export default {
             store:"",
             listyle:[
                 {tp:"综合",class:"line",px:'Zc'},
-                 {tp:"最新",class:"",px:"Zc"},
+                 {tp:"最新",class:"",px:"Time"},
                   {tp:"种草",class:"",px:"Zc"},
                    {tp:"升价",class:"",px:"Price"},
                     {tp:"降价",class:"",px:"DescPrice"}
@@ -54,7 +54,10 @@ export default {
         //  console.log(this.$route.params)
      },
       methods:{
-          lis(){},
+          godetail(item){
+              console.log(item.goodsID)
+              this.$router.push({path:'/detail',query:{goodsid:item.goodsID}});
+          },
           libt(index){
 
             //   console.log(this._data.listyle)
