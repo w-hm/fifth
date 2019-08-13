@@ -4,9 +4,9 @@
              <img src="https://pic.hanfugou.com/web/2019/7/25/15/aa615cfa36ed44f5a00252a8bbb926dc.png_min.jpg" alt="">          
             <div class="hanfu_products" ref="fzan"> 
                 <div class="hanfu_scroll" >              
-                    <div class="hanfu_con" v-for="fzan of fazanList" :key="fzan.id">
-                        <img :src="fzan.imgUrl" alt="">
-                        <span>¥{{fzan.price.toFixed(2)}}</span>
+                    <div class="hanfu_con" v-for="han of hanfuList" :key="han.goodsID">
+                        <img :src="han.goodsPicture" alt="" style="height:2rem;">
+                        <span>¥{{han.goodsPrice.toFixed(2)}}</span>
                     </div> 
                       <div class="hanfu_con">
                             <img src="https://m.hanfugou.com/Image/ban_more.png" alt="">              
@@ -23,16 +23,16 @@ export default {
     name:"hanfu",
     data(){
         return{
-            fazanList:[]
+            hanfuList:[]
         }
     },
      mounted(){
            this.$nextTick(() => {
                 this.personScroll();
         });
-    axios.get("/api/getfazan").then((res)=>{
+    axios.get("http://192.168.52.94:8080/hanfugou/CLGHF").then((res)=>{
         // console.log(res)
-        this.fazanList=res.data.fazan
+        this.hanfuList=res.data
     })
         
     },
@@ -66,7 +66,7 @@ export default {
 }
 .hanfu_scroll{
     display:flex;
-    width: 24rem;
+    width: 15.5rem;
     padding-top:0.1rem;
 }
 .hanfu_con{

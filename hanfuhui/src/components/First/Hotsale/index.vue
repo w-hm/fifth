@@ -10,7 +10,7 @@
             <div class="pic" v-for="hot of hotList" :key="hot.goodsID">
                 <img :src="hot.goodsPicture" alt="" style="width:2.2rem;height:2.2rem;">
                 <span class="decs">{{hot.goodsName}}</span>
-                <span class="price">¥{{hot.goodsPrice}}</span>
+                <span class="price">¥{{hot.goodsPrice.toFixed(2)}}</span>
             </div>
         </div>                    
              

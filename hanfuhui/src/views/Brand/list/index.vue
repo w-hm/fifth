@@ -35,6 +35,7 @@ export default {
 
 
      created(){
+         console.log(this.$route.query)
          let that=this
          console.log(this.$route.params.storeId)
          axios.get("http://192.168.52.90:8080/hanfugou/InChest?goodsType=qx").then(function(res){
