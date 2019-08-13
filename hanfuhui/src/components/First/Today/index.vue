@@ -10,7 +10,7 @@
                         <span class="countDown">{{time}}</span>
                     </div>
                     <div class="more">
-                        <span>查看更多</span>
+                        <span>查看更多</span>                        
                         <img
                             src="https://m.hanfugou.com/Image/icon_more.png"
                             alt
@@ -22,7 +22,7 @@
             <div class="pic" ref="picWrap" >
                 
                     <div class="box" >
-                        <div class="content" v-for="product of products" :key="product.id">
+                        <div class="content" v-for="product of productList" :key="product.id">
                             <img :src="product.imgUrl" alt style="width:2rem;height:2rem;" />
                             <span class="nowPrice">¥ {{product.nowPrice.toFixed(2)}}</span>
                             <span class="oldPrice">¥ {{product.oldPrice.toFixed(2)}}</span>
@@ -43,8 +43,18 @@ export default {
     return {
         time:"",
         flag:false,
-        products:[],
-
+        productList:[
+              {id:"1",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"2",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/29/19/9cb5246aa38647b58c577d82e838a2a0.jpg_200x200.jpg"},
+              {id:"3",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"4",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"5",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"6",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"7",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"8",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"9",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"10",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+            ]
     };
   },
   mounted() {
@@ -60,10 +70,10 @@ export default {
     },500)
     
 
-    axios.get("/api/getproducts").then((res)=>{
-        // console.log(res)
-        this.products=res.data.products
-    })
+    // axios.get("/api/getproducts").then((res)=>{
+    //     // console.log(res)
+    //     this.products=res.data.products
+    // })
 
   
   },
@@ -129,6 +139,9 @@ export default {
   font-size: 0.22rem;
   justify-content: center;
   align-items: center;
+}
+.today .more{
+  display: flex;
 }
 .today .time span {
   color: white;
