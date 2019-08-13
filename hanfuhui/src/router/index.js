@@ -26,6 +26,12 @@ export default new Router({
     Brand,
     Twohand,
     Shoppingcart,
-    Mine
+    Mine,
+
+    
+    {
+      path:"*",
+      redirect:"first"
+    }
   ]
 })

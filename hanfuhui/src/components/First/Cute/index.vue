@@ -6,18 +6,18 @@
             <img src="https://m.hanfugou.com/Image/bor_title_2.png" alt="">
         </div>
         <div class="pic_wrap">
-            <div class="pic" v-for="cute of cuteList" :key="cute.id">
-                <div class="main">
-                    <img :src="cute.imgUrl" alt="" style="width:3.7rem;height:3.7rem;">
-                    <span>{{cute.desc}}</span>
+            <div class="pic" v-for="cute of cuteList" :key="cute.goodsID">
+                <div class="main" >
+                    <img :src="cute.goodsPicture" alt="" style="width:3.7rem;height:3.7rem;">
+                    <span>{{cute.goodsName}}</span>
                 </div>
                <div class="address">
-                   <span>{{cute.name}}</span>
-                   <span>{{cute.address}}</span>
+                   <span>{{cute.storeName}}</span>
+                   <span>{{cute.storeAddress}}</span>
                </div>
                <div class="price_wrap">
-                   ¥ <span class="price">{{cute.price}}</span>
-                   <span class="glass">{{cute.count}}</span>
+                   ¥ <span class="price">{{cute.goodsPrice}}</span>
+                   <span class="glass">{{cute.goodsCollect}}人种草</span>
                </div>
             </div>      
         </div>
@@ -33,10 +33,14 @@ export default {
         }
     },
     mounted(){
-        axios.get("/api/getcute").then((res)=>{
+        axios.get("http://192.168.52.94:8080/hanfugou/jxmwShow").then((res)=>{
             console.log(res)
-            this.cuteList=res.data.cute
+            this.cuteList=res.data
         })
+
+        console.log(this.cuteList)
+
+        
     }
 }
 </script>
@@ -92,4 +96,5 @@ export default {
        margin-left: 0.3rem;
        font-size:0.22rem;
    }
+   
 </style>

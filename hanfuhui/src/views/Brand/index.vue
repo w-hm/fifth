@@ -1,7 +1,8 @@
 <template>
     <div class="wrap">
        <ul class="titleul">
-           <li v-for="(item,index) in titlelist" :key="index" v-on:click="libt(item,index)" :class="item.flag">{{item.title}}</li>
+           <li v-for="(item,index) in titlelist" :key="index" v-on:click="libt(item,index)"
+            :class="item.flag">{{item.title}}</li>
        </ul>
        <div class="Brandmain">
            <div class="store" v-for="item in mainlist" :key="item.id">
@@ -23,8 +24,9 @@
                            <img  alt="" :src="goods.goodsPicture">
                            <p>{{goods.goodsName}}</p>
                            <div>￥{{goods.goodsPrice}}</div>
+                           
                        </div>
-                   </div>
+                   </div>     
                </div>
            </div>
        </div>
@@ -36,11 +38,14 @@ export default {
     name:"Brand",
     data:function(){
         return {
-        titlelist:[{title:"热门店铺",flag:"special",ty:"rmdp"},
-                {title:"最新入驻", flag:false,ty:"zxrz"},
-                {title:"白菜商家",flag:false,ty:"bcsj"},
-                {title:"中档消费",flag:false,ty:"zdxf"},
-                {title:"高档定制",flag:false,ty:"gddz"}],
+        titlelist:[
+                  {title:"热门店铺",flag:"special",ty:"rmdp"},
+                   {title:"最新入驻", flag:false,ty:"zxrz"},
+                   {title:"白菜商家",flag:false,ty:"bcsj"},
+                   {title:"中档消费",flag:false,ty:"zdxf"},
+                   {title:"高档定制",flag:false,ty:"gddz"}
+                   ],
+                   
         flag:false,
         liclass:"",
         mainlist:[]
@@ -56,15 +61,15 @@ export default {
           },
         libt(item,index){
             this.titlelist.forEach(item => {
-                item.flag=""
+                item.flag=" " 
             });
             this.titlelist[index].flag="special"
             console.log(item.ty)
              var that=this;
         axios.get("http://192.168.52.94:8080/hanfugou/HotStore?storeType="+item.ty).then(function(res){
             console.log(res.data)
-            // console.log(that._data.mainlist)
-            that._data.mainlist=res.data
+            console.log(that._data.mainlist)
+            that._data.mainlist=res.data //更新
         })
 
 
@@ -75,12 +80,14 @@ export default {
             // console.log(11111)
         },
     },
+
     created:function(){
         // console.log(this._data.mainlist)
         var that=this;
         axios.get("http://192.168.52.94:8080/hanfugou/HotStore?storeType="+"rmdp").then(function(res){
-            console.log(res.data)
-            // console.log(that._data.mainlist)
+
+        
+            console.log(that._data.mainlist)
             that._data.mainlist=res.data
         })
         // this._data.mainlist=""

@@ -5,7 +5,10 @@
 </template>
 <script>
 export default {
-    name:"Twohand"
+    name:"Twohand",
+    create(){
+        console.log(this.$route.query)
+    }
 }
 </script>
 <style scoped>

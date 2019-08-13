@@ -7,10 +7,10 @@
         </div>
         
         <div class="pic_wrap" >
-            <div class="pic" v-for="hot of hotList" :key="hot.id">
-                <img :src="hot.imgUrl" alt="" style="width:2.2rem;height:2.2rem;">
-                <span class="decs">{{hot.desc}}</span>
-                <span class="price">¥{{hot.price.toFixed(2)}}</span>
+            <div class="pic" v-for="hot of hotList" :key="hot.goodsID">
+                <img :src="hot.goodsPicture" alt="" style="width:2.2rem;height:2.2rem;">
+                <span class="decs">{{hot.goodsName}}</span>
+                <span class="price">¥{{hot.goodsPrice.toFixed(2)}}</span>
             </div>
         </div>                    
              
@@ -27,9 +27,9 @@ export default {
         }
     },
     mounted(){
-        axios.get("/api/gethotsale").then((res)=>{
-            // console.log(res)
-            this.hotList=res.data.hotsale
+        axios.get("http://192.168.52.94:8080/hanfugou/BzrmGoods").then((res)=>{
+            console.log(res)
+            this.hotList=res.data
         })
     // console.log(this.hotList)
        
@@ -60,7 +60,7 @@ export default {
     }
     .hotsale .pic span{
         margin-top: 0.15rem;   
-        padding-left: 0.2rem;  
+        padding-left: 0.12rem;  
     }
     .hotsale .pic .decs{
             color: grey;

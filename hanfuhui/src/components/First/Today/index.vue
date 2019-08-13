@@ -148,6 +148,8 @@ export default {
 .pic .box {
   display: flex;
   padding:0.2rem 0.3rem; 
+  height: 3.5rem;
+  width: 24.5rem;;
 }
  
 .pic .content {
