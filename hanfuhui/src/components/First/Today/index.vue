@@ -10,7 +10,7 @@
                         <span class="countDown">{{time}}</span>
                     </div>
                     <div class="more">
-                        <span>查看更多</span>
+                        <span>查看更多</span>                        
                         <img
                             src="https://m.hanfugou.com/Image/icon_more.png"
                             alt
@@ -139,6 +139,9 @@ export default {
   font-size: 0.22rem;
   justify-content: center;
   align-items: center;
+}
+.today .more{
+  display: flex;
 }
 .today .time span {
   color: white;
