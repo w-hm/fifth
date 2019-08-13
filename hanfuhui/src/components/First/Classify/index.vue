@@ -1,10 +1,38 @@
 <template>
     <div class="classify">
             <ul class="classify_ul">
-                <div v-for="classify of classifyList" :key="classify.id">
-                <img :src="classify.imgUrl" alt style="width:1rem;height:1rem;"/>
-                <span>{{classify.name}}</span>
-                </div>
+                <router-link tag="div" to="" >
+                  <img src="https://m.hanfugou.com/Image/icon_type_qixiong.png?v=3" alt style="width:1rem;height:1rem;"/>
+                  <span>齐胸</span>
+                </router-link>    
+                   <router-link tag="div" to="" >
+                  <img src="https://m.hanfugou.com/Image/icon_type_beizi.png?v=3" alt style="width:1rem;height:1rem;"/>
+                  <span>褙子</span>
+                </router-link>  
+                   <router-link tag="div" to="" >
+                  <img src="https://m.hanfugou.com/Image/icon_type_jiaoling.png?v=3" alt style="width:1rem;height:1rem;"/>
+                  <span>交领襦裙</span>
+                </router-link>  
+                   <router-link tag="div" to="" >
+                  <img src="https://m.hanfugou.com/Image/icon_type_duijing.png?v=3" alt style="width:1rem;height:1rem;"/>
+                  <span>对襟襦裙</span>
+                </router-link>  
+                   <router-link tag="div" to="" >
+                  <img src="https://m.hanfugou.com/Image/icon_type_aoqun.png?v=3" alt style="width:1rem;height:1rem;"/>
+                  <span>袄裙</span>
+                </router-link>  
+                   <router-link tag="div" to="" >
+                  <img src="https://m.hanfugou.com/Image/icon_type_zhoubian.png?v=3" alt style="width:1rem;height:1rem;"/>
+                  <span>配饰周边</span>
+                </router-link>  
+                   <router-link tag="div" to="" >
+                  <img src="https://m.hanfugou.com/Image/icon_type_hanyuansu.png?v=3" alt style="width:1rem;height:1rem;"/>
+                  <span>汉元素</span>
+                </router-link>  
+                   <router-link tag="div" to="" >
+                  <img src="https://m.hanfugou.com/Image/icon_type_more.png?v=3" alt style="width:1rem;height:1rem;"/>
+                  <span>全部分类</span>
+                </router-link>             
             </ul>
         </div>
 </template>
@@ -13,16 +41,11 @@ import axios from "axios"
 export default {
     name:"Classify",
       data() {
-    return {
-        classifyList:[]
-    };
+        return {
+ 
+        };
   },
-  mounted() {
-    axios.get("/api/getclassify").then((res)=>{
-        // console.log(res)
-        this.classifyList=res.data.classify
-    })
-  },
+ 
 }
 </script>
 <style scoped>
