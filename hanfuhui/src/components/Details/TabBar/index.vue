@@ -15,7 +15,7 @@
                 </div>
             </div>
 
-            <div class="join_shop">
+            <div class="join_shop" @click="addShopping">
                 加入购物车
             </div>
 
@@ -27,7 +27,21 @@
 </template>
 <script>
 export default {
-    name:"TabBar"
+    name:"TabBar",
+
+    data(){
+        return {
+
+        }
+    },
+    mounted(){
+        console.log(this.$route.query)
+    },
+    methods:{
+        addShopping(){
+          
+        }
+    }
 }
 </script>
 <style scoped>

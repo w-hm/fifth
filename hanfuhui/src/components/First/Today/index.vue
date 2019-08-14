@@ -13,16 +13,22 @@
 
             <div class="pic" ref="picWrap" >        
                     <div class="box" >
-                        <router-link tag="div" class="content" v-for="product of productList" :key="product.id" :to="{name:'details',query:{goodsId:product.id}}">
+                        <div  class="content" v-for="product of productList" :key="product.id" @click="btn">
                             <img :src="product.imgUrl" alt style="width:2rem;height:2rem;" />
-                            <span class="nowPrice">¥ {{product.nowPrice.toFixed(2)}}</span>
-                            <span class="oldPrice">¥ {{product.oldPrice.toFixed(2)}}</span>
-                        </router-link>                    
+                            <span class="nowPrice">{{product.protagonist}}</span>
+                            <span class="oldPrice">{{product.dm_name}}</span>
+                        </div>                    
                         <div class="content">
                             <img src="https://m.hanfugou.com/Image/ban_more.png" alt="">              
                         </div>
                     </div>               
             </div>
+           
+              <div class="box_shadow" v-if="today">
+                <span @click="close" class="close">x</span>
+                <span class="nosale">不卖不卖，走走走开！ </span>         
+            </div>
+           
         </div>
 </template>
 <script>
@@ -34,17 +40,16 @@ export default {
     return {
         time:"",
         flag:false,
+        today:false,
         productList:[
-              {id:"1",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
-              {id:"2",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/29/19/9cb5246aa38647b58c577d82e838a2a0.jpg_200x200.jpg"},
-              {id:"3",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
-              {id:"4",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
-              {id:"5",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
-              {id:"6",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
-              {id:"7",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
-              {id:"8",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
-              {id:"9",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
-              {id:"10",name:"簪子",nowPrice:219,oldPrice:249,imgUrl:"https://pic.hanfugou.com/web/2019/7/31/16/926b424e8bec46b4862884d8da8731f0.jpg_200x200.jpg"},
+              {id:"1",name:"鸣人",protagonist:"鸣人",dm_name:"火影忍者",imgUrl:"http://img3.imgtn.bdimg.com/it/u=1426008625,3802203540&fm=26&gp=0.jpg"},
+              {id:"2",name:"黑崎一护",protagonist:"黑崎一护",dm_name:"死神",imgUrl:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2269529828,311475713&fm=26&gp=0.jpg"},
+              {id:"3",name:"坂田银时",protagonist:"坂田银时",dm_name:"银魂",imgUrl:"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2565732405,1492164659&fm=26&gp=0.jpg"},
+              {id:"4",name:"路飞",protagonist:"路飞",dm_name:"海贼王",imgUrl:"https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2542806300,628329809&fm=26&gp=0.jpg"},
+              {id:"5",name:"卡卡罗特",protagonist:"卡卡罗特",dm_name:"七龙珠",imgUrl:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3606346792,3983223685&fm=26&gp=0.jpg"},             
+              {id:"6",name:"索隆",protagonist:"索隆",dm_name:"海贼王",imgUrl:"https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1968732288,1624112053&fm=26&gp=0.jpg"},
+              {id:"7",name:"佐助",protagonist:"佐助",dm_name:"火影忍者",imgUrl:"https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=4109989097,2022844139&fm=26&gp=0.jpg"},
+              
             ]
     };
   },
@@ -59,16 +64,16 @@ export default {
         }
         this.countDown()
     },500)
-    
-
-    // axios.get("/api/getproducts").then((res)=>{
-    //     // console.log(res)
-    //     this.products=res.data.products
-    // })
-
   
   },
   methods: {
+
+      btn(){
+        this.today=true
+      },
+      close(){
+        this.today=false
+      },
 
       countDown(){
           const endtime=new Date("2019-8-17")
@@ -92,8 +97,7 @@ export default {
                 return time
           }else{
               return `0${time}`
-          }
-          
+          }       
       },
 
     personScroll() {
@@ -115,6 +119,33 @@ export default {
 }
 </script>
 <style scoped>
+  .today .box_shadow{  
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.4rem;    
+    box-shadow: 3px 3px 7px grey;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    position: fixed;
+    left:0;
+    top: 0;
+  }
+  .today .box_shadow .close{
+    position: absolute;
+    right: 15px;
+    top: 0;   
+  }
+  .today .box_shadow .nosale{
+      width: 5rem;
+      height: 3rem;
+      background-color: #ff4466;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
 
 .title {
   width: 100%;
@@ -173,11 +204,12 @@ export default {
     padding-top: 0.1rem;
 }
 .pic .content .nowPrice {
-  color: red;
+  
+   text-decoration: line-through;
+  color: grey;
 }
 .pic .content .oldPrice {
-  text-decoration: line-through;
-  color: grey;
+  color: red;
 }
 
 .today .more {
