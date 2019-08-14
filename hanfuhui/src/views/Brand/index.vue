@@ -23,8 +23,7 @@
                        <div class="img">
                            <img  alt="" :src="goods.goodsPicture">
                            <p>{{goods.goodsName}}</p>
-                           <div>￥{{goods.goodsPrice}}</div>
-                           
+                           <div>￥{{goods.goodsPrice}}</div>  
                        </div>
                    </div>     
                </div>

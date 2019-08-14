@@ -9,6 +9,7 @@ import Shoppingcart from "./Shoppingcart"
 import store from "./store"
 import list from "./list"
 import detail from "./detail"
+import Details from "./Details"
 
 
 
@@ -28,6 +29,7 @@ export default new Router({
     Twohand,
     Shoppingcart,
     Mine,
+    Details,
 
     
     {

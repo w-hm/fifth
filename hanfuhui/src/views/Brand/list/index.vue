@@ -78,22 +78,17 @@ export default {
          })
           }
       },
-     mounted() {
-         
-     }
+   
     
 }
 </script>
-<style store>
+<style sc>
     .wrap{
         background: white;
         overflow: hidden;
     }
     
-    .shoplist{
-        /* margin-top: 0.2rem; */
-        /* padding-top: 0.2rem; */
-    }
+   
     
     .shoplist>h3{
         padding: 0.2rem;
@@ -120,6 +115,8 @@ export default {
     }
     .line{
         border-bottom: 4px solid#ff6699;
+        color: #ff6699;
+        
     }
     .shoplist .listimg  {
         /* margin-top: 0rem; */
