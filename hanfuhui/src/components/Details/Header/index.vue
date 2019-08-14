@@ -4,10 +4,10 @@
                 <img src="https://m.hanfugou.com/Image/icon_u_atte.png?v=1" alt="" style="width:0.7rem;height:0.7rem;">
                 <span>商城主页</span>
             </router-link>
-            <div class="shopping">
+            <router-link tag="div" to="/shoppingcart" class="shopping">
                 <img src="https://m.hanfugou.com/Image/icon_u_cart.png?v=1" alt="" style="width:0.7rem;height:0.7rem;">
                 <span>购物车</span>
-            </div>
+            </router-link>
             <div class="mine">
                 <img src="https://m.hanfugou.com/Image/icon_user_def.png?v=1" alt="" style="width:0.7rem;height:0.7rem;">
                 <span>个人中心</span>
