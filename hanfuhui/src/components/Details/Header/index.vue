@@ -1,9 +1,9 @@
 <template>
     <div class="header">
-            <div class="main">
+            <router-link tag="div" class="main" to="/first">
                 <img src="https://m.hanfugou.com/Image/icon_u_atte.png?v=1" alt="" style="width:0.7rem;height:0.7rem;">
                 <span>商城主页</span>
-            </div>
+            </router-link>
             <div class="shopping">
                 <img src="https://m.hanfugou.com/Image/icon_u_cart.png?v=1" alt="" style="width:0.7rem;height:0.7rem;">
                 <span>购物车</span>

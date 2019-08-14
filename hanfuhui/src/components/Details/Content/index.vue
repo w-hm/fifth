@@ -1,20 +1,21 @@
 <template>
-      <div class="content">
-            <div class="pic_wrap">
+<div>
+      <div class="content" v-for="details of detailList" :key="details.goodsID">
+            <div class="pic_wrap" >
                 <div class="pic">
-                    <img src="https://pic.hanfugou.com/web/2019/6/13/17/9fa69e74a1194ef485721b04b885902b.jpg_700x700.jpg" alt="" style="width:100%;">
+                    <img :src="details.goodsPicture" alt="" style="width:100%;">
                 </div>
             </div>
             <div class="title">
-                【呦呦鹿鸣】 (韩十一）原创设计传统汉服 烫金 齐胸襦裙齐腰襦裙
+                {{details.goodsName}}
             </div>
             <div class="price">
-                ¥<span>79.0-99.0</span>
+                ¥<span>{{details.goodsPrice.toFixed(2)}}</span>
             </div>
             
             <div class="desc">
                 <span class="yf">邮费：包邮</span>
-                <span class="kc">库存 25574</span>
+                <span class="kc">库存 {{details.goodsCollect}}</span>
                 <span class="glass">9004 人已种草</span>
             </div>
             <div class="post">
@@ -34,10 +35,24 @@
                 </div>
             </div>
         </div>
+</div>
 </template>
 <script>
+import axios from "axios"
 export default {
-    name:"Content"
+    name:"Content",
+    data(){
+        return {
+            detailList:[]
+        }
+    },
+      mounted(){
+          console.log(this.$route.query.id)
+        axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
+            console.log(res)
+            this.detailList=res.data
+        })
+    } 
 }
 </script>
 <style scoped>

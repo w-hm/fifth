@@ -13,7 +13,7 @@
 
             <div class="pic" ref="picWrap" >        
                     <div class="box" >
-                        <router-link tag="div" class="content" v-for="product of productList" :key="product.id" :to="{name:'details',query:{id:product.id}}">
+                        <router-link tag="div" class="content" v-for="product of productList" :key="product.id" :to="{name:'details',query:{goodsId:product.id}}">
                             <img :src="product.imgUrl" alt style="width:2rem;height:2rem;" />
                             <span class="nowPrice">¥ {{product.nowPrice.toFixed(2)}}</span>
                             <span class="oldPrice">¥ {{product.oldPrice.toFixed(2)}}</span>

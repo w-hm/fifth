@@ -1,5 +1,5 @@
 <template>
-    <div class="hotsale">
+    <div class="hotsale" >
         <div class="title">
             <img src="https://m.hanfugou.com/Image/bor_title_1_left.png" alt="">
             <span>本周热卖</span>
@@ -7,11 +7,11 @@
         </div>
         
         <div class="pic_wrap" >
-            <div class="pic" v-for="hot of hotList" :key="hot.goodsID">
+            <router-link class="pic" tag="div" :to="{name:'details',query:{goodsId:hot.goodsID}}" v-for="hot of hotList" :key="hot.goodsID" >
                 <img :src="hot.goodsPicture" alt="" style="width:2.2rem;height:2.2rem;">
                 <span class="decs">{{hot.goodsName}}</span>
                 <span class="price">¥{{hot.goodsPrice.toFixed(2)}}</span>
-            </div>
+            </router-link>
         </div>                    
              
           

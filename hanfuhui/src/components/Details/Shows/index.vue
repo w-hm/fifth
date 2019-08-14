@@ -1,17 +1,29 @@
 <template>
-     <div class="pro_shows">
+<div>
+     <div class="pro_shows" >
                 <span>商品展示</span>
-                <div class="pic">
-                <img src="https://pic.hanfugou.com/web/2019/5/12/12/460bba81ec9544aebb6bdf566d4df7a4.jpg_700xshop.jpg" alt="">
-                <img src="https://pic.hanfugou.com/web/2019/5/12/12/e7f5c644014541368cc61cde602ffb78.jpg_700xshop.jpg" alt="">
-                <img src="https://pic.hanfugou.com/web/2019/5/12/12/3986dbc421594d9e815154e18271735f.jpg_700xshop.jpg" alt="">
-                <img src="https://pic.hanfugou.com/web/2019/5/12/12/1e3547dbc5f74ca8b1f55aea72f22c10.jpg_700xshop.jpg" alt="">
+                <div class="pic" v-for="details of detailList" :key="details.goodsID">
+                     <img :src="details.goodsShow" alt="">
                 </div>
         </div>
+    </div>
 </template>
 <script>
+import axios from "axios"
 export default {
-        name:"Shows"
+        name:"Shows",
+          data(){
+            return {
+                detailList:[]
+            }
+    },
+      mounted(){
+        //   console.log(this.$route.query.goodsId)
+        axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
+            console.log(res)
+            this.detailList=res.data
+        })
+    } 
 }
 </script>
 <style scoped>

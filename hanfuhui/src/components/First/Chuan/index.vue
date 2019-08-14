@@ -4,10 +4,10 @@
              <img src="https://pic.hanfugou.com/web/2019/8/3/1/0350d0715ba44443abad59bc23a2c77a.png_min.jpg" alt="">          
             <div class="chuan_products" ref="fzan"> 
                 <div class="chuan_scroll" >              
-                    <div class="chuan_con" v-for="chuan of chuanList" :key="chuan.goodsID">
+                    <router-link tag="div" :to="{name:'details',query:{goodsId:chuan.goodsID}}" class="chuan_con" v-for="chuan of chuanList" :key="chuan.goodsID">
                         <img :src="chuan.goodsPicture" alt="" style="height:2rem;">
                         <span>¥{{chuan.goodsPrice.toFixed(2)}}</span>
-                    </div> 
+                    </router-link> 
                       <div class="chuan_con">
                             <img src="https://m.hanfugou.com/Image/ban_more.png" alt="">              
                         </div>

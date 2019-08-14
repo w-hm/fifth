@@ -14,6 +14,7 @@
     </div>
 </template>
 <script>
+import axios from "axios"
 import Header from "@/components/Details/Header"
 import TabBar from "@/components/Details/TabBar"
 import Content from "@/components/Details/Content"
@@ -24,6 +25,11 @@ import Shows from "@/components/Details/Shows"
 import Again from "@/components/Details/Again"
 export default {
     name:"Details",
+    data(){
+        return {
+            detailList:[]
+        }
+    },
     components:{
         Header,
         TabBar,
@@ -35,7 +41,11 @@ export default {
         Again
     }  ,
     mounted(){
-       console.log(this.$route)
+    //    console.log(this.$route)
+        axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId=1").then((res)=>{
+            console.log(res)
+            this.detailList=res.data
+        })
     }    
 }
 </script>

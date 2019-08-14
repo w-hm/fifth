@@ -4,10 +4,10 @@
              <img src="https://pic.hanfugou.com/web/2019/8/9/11/65672f483ec54733bfdea19136aaef2a.png_min.jpg" alt="">          
             <div class="fazan_products" ref="fzan"> 
                 <div class="fazan_scroll" >              
-                    <div class="fazan_con" v-for="fzan of fazanList" :key="fzan.goodsID">
+                    <router-link tag="div" :to="{name:'details',query:{goodsId:fzan.goodsID}}" class="fazan_con" v-for="fzan of fazanList" :key="fzan.goodsID">
                         <img :src="fzan.goodsPicture" alt="" style="height:2rem;">
                         <span>¥{{fzan.goodsPrice.toFixed(2)}}</span>
-                    </div> 
+                    </router-link> 
                       <div class="fazan_con">
                             <img src="https://m.hanfugou.com/Image/ban_more.png" alt="">              
                         </div>

@@ -18,24 +18,24 @@
             </div>
         </div>
 
-        <div class="select">
+        <div class="select" onclick="selected">
             <span>选择 颜色 尺码</span>
             <span class="you">></span>
         </div>
 
-        <div class="user">
+        <div class="user" v-for="details of detailList" :key="details.storeId">
             <div class="title">
                 <div class="user_name">
-                    <img src="../../../../public/img/xl.jpeg" alt="" style="width:1rem;height:1rem;" >
-                    <span>雪梨最美丽</span>
+                    <img :src="details.storeIcon" alt="" style="width:1rem;height:1rem;" >
+                    <span>{{details.storeName}}</span>
                 </div>
                 <div class="shop">
                     <div class="six">
-                        <span>100</span>
+                        <span>{{details.storeGoodsTotal}}</span>
                         <span class="sp">商品</span>
                     </div>
                     <div class="fans">
-                        <span>14亿</span>
+                        <span>{{details.storeFocusNumber}}</span>
                         <span class="fs">粉丝</span>
                     </div>
                 </div>
@@ -54,12 +54,25 @@
     </div>
 </template>
 <script>
+import axios from "axios"
 export default {
-        name:"Pay"
+        name:"Pay",
+      data(){
+        return {
+            detailList:[]
+        }
+    },
+      mounted(){
+        //   console.log(this.$route.query.id)
+        axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
+            console.log(res)
+            this.detailList=res.data
+        })
+    } 
 }
 </script>
 <style scoped>
-    .user{
+.user{
     display: flex;
     flex-direction: column;
     padding: 0 0.3rem 0.2rem;
