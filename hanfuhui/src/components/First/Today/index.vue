@@ -2,31 +2,22 @@
        <div class="today">
                 <div class="title">
                     <div class="time">
-                        <img
-                            src="https://m.hanfugou.com/Image/icon_seckill_title.png"
-                            alt
-                            style="width:1.5rem;height:0.45rem;"
-                        />
+                        <img src="https://m.hanfugou.com/Image/icon_seckill_title.png" style="width:1.5rem;height:0.45rem;" />
                         <span class="countDown">{{time}}</span>
                     </div>
                     <div class="more">
                         <span>查看更多</span>                        
-                        <img
-                            src="https://m.hanfugou.com/Image/icon_more.png"
-                            alt
-                            style="width:0.3rem;height:0.3rem;"
-                        />
+                        <img src="https://m.hanfugou.com/Image/icon_more.png" style="width:0.3rem;height:0.3rem;" />
                     </div>
                 </div>
 
-            <div class="pic" ref="picWrap" >
-                
+            <div class="pic" ref="picWrap" >        
                     <div class="box" >
-                        <div class="content" v-for="product of productList" :key="product.id">
+                        <router-link tag="div" class="content" v-for="product of productList" :key="product.id" :to="{name:'details',query:{id:product.id}}">
                             <img :src="product.imgUrl" alt style="width:2rem;height:2rem;" />
                             <span class="nowPrice">¥ {{product.nowPrice.toFixed(2)}}</span>
                             <span class="oldPrice">¥ {{product.oldPrice.toFixed(2)}}</span>
-                        </div>                    
+                        </router-link>                    
                         <div class="content">
                             <img src="https://m.hanfugou.com/Image/ban_more.png" alt="">              
                         </div>
