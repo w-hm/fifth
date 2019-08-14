@@ -1,44 +1,26 @@
-<template>
-    <div  class="wrap">
+<template class="wrap">
+    <div>
         <Head title="登录&&注册" :show="true"></Head>
         <mt-navbar v-model="selected">
             <mt-tab-item id="login">登录</mt-tab-item>
             <mt-tab-item id="register">注册</mt-tab-item>
         </mt-navbar>
-
-         <mt-tab-container v-model="selected">
+        <mt-tab-container v-model="selected">
             <mt-tab-container-item id="login">
-                 <mt-field label="账号" placeholder="请输入用户名" v-model="tel"></mt-field>
+                 <mt-field label="用户名" placeholder="请输入用户名" v-model="tel"></mt-field>
                  <mt-field label="密码" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
                  <mt-button type="primary" size="large" @click="login()">登录</mt-button>
             </mt-tab-container-item>
             <mt-tab-container-item id="register">
-                 <mt-field label="账号" placeholder="请输入用户名" v-model="name"></mt-field>
-                 <mt-field label="手机" placeholder="请输入手机号" type="tel" v-model="tel"></mt-field>
+                 <mt-field label="用户名" placeholder="请输入用户名" v-model="name"></mt-field>
+                 <mt-field label="手机号" placeholder="请输入手机号" type="tel" v-model="tel"></mt-field>
                  <mt-field label="密码" placeholder="请输入密码" type="password" v-model="pwd"></mt-field>
                  <mt-button type="danger" size="large" @click="rigister">注册</mt-button>
             </mt-tab-container-item>
         </mt-tab-container>
-
         <div class="tip">
             提示信息:<span>{{tip}}</span>
         </div>
-
-              <div class="foot">
-                  <a href="https://public.hanfugou.com/Account/qq" class="btn_qq">
-                      <img src="../../../public/img/qq.png" alt="">
-                      <span class="f_white">QQ登录</span>
-                  </a>
-                  <a href="https://public.hanfugou.com/Account/weibo" class="btn_weibo">
-                       <img src="../../../public/img/weibo.png" alt="">
-                       <span class="f_white">微博登录</span>
-                  </a>
-              </div>
-              <div class="foot2">
-                  <img src="../../../public/img/ma.png" alt="" >
-                  <img src="../../../public/img/fu.png" alt="">
-              </div>
-          
     </div>
 </template>
 
@@ -48,7 +30,10 @@ var axios = require("axios")
 export default {
     data(){
         return {
-            selected:"login",  
+            selected:"login",
+            loginInfo:{},
+            rigisterInfo:{},
+        
             tel:"",
             pwd:"",
             name:"",
@@ -102,7 +87,7 @@ export default {
                       that.tip="注册成功"
                       that.name=""
                       that.tel=""
-                      that.pwd=""
+                      taht.pwd=""
                       that.flag=true
                 }
                  if(res.data==4){
@@ -117,32 +102,10 @@ export default {
 </script>
 
 <style scoped>
- .foot{
-     width: 100%;
-     height: 2.5rem;
-    margin-top: 0.9rem;
-    text-align: center;
- }
- .btn_qq{
-     float:left;
-     margin-left: 1.1rem;
- }
- .btn_weibo{
-     float: left;
-       margin-left:1.1rem;
- }
-  .f_white{
-      font-size: 0.3rem;
-      color: black
-  }
-  .foot2 img{
-      width:48%;
-      float: left; 
-    padding-top: 0.5rem;
-    padding-left: 0.5rem;
-    vertical-align: middle;
-  }
-   .tip{
+    .wrap{
+        font-size: 0.5rem;
+    }
+    .tip{
         padding-top: 0.2rem;
         color: #555;
         font-size: 0.4rem;
@@ -150,7 +113,6 @@ export default {
     .tip span{
         color: red
     }
-  
-</style>
-  
 
+
+</style> 
