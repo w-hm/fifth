@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <template>
     <div  class="wrap">
         <Head title="登录&&注册" :show="true"></Head>
@@ -51,8 +49,8 @@ export default {
     data(){
         return {
             selected:"login",  
-            tel:"",
-            pwd:"",
+            tel:"13407140934",
+            pwd:"814892235",
             name:"",
             tip:"",
             flag:""
@@ -70,7 +68,7 @@ export default {
             .then(res=>{
                 // console.log(res.data);
                 console.log(res.data)
-                if(res.data.code){
+                if(res.data.code==3){
                     this.tip="用户名与密码不匹配"
                 }
                 if(res.data.code==2){
@@ -79,6 +77,9 @@ export default {
                 }
                 if(res.data.code==1){
                     this.tip="登录成功"
+                    sessionStorage.username=res.data.username
+                    sessionStorage.token=res.data.token
+                    
                 }
                 // if(!!res.data.type){
                 //     window.sessionStorage.userInfo = JSON.stringify({token:res.data.token});

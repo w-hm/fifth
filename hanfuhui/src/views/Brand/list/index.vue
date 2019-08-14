@@ -52,7 +52,7 @@ export default {
       methods:{
           godetail(item){
               console.log(item.goodsID)
-              this.$router.push({path:'/detail',query:{goodsid:item.goodsID}});
+              this.$router.push({path:'/details',query:{goodsid:item.goodsID}});
           },
           libt(index){
 
