@@ -35,10 +35,15 @@ export default {
 
 
      created(){
-        console.log(this.$route.param)
+
+        // console.log(this.$route.param)
+
+         console.log(this.$route.query)
+         let id=this.$route.query.goodsType
+
 
          let that=this
-         axios.get("http://192.168.52.90:8080/hanfugou/InChest?goodsType=qx").then(function(res){
+         axios.get("http://192.168.52.90:8080/hanfugou/InChest?goodsType="+id).then(function(res){
              console.log(res.data)
              that._data.store=res.data
              console.log(that._data.store)
