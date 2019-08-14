@@ -4,9 +4,9 @@
              <img src="https://pic.hanfugou.com/web/2019/8/3/1/0350d0715ba44443abad59bc23a2c77a.png_min.jpg" alt="">          
             <div class="chuan_products" ref="fzan"> 
                 <div class="chuan_scroll" >              
-                    <div class="chuan_con" v-for="fzan of fazanList" :key="fzan.id">
-                        <img :src="fzan.imgUrl" alt="">
-                        <span>¥{{fzan.price.toFixed(2)}}</span>
+                    <div class="chuan_con" v-for="chuan of chuanList" :key="chuan.goodsID">
+                        <img :src="chuan.goodsPicture" alt="" style="height:2rem;">
+                        <span>¥{{chuan.goodsPrice.toFixed(2)}}</span>
                     </div> 
                       <div class="chuan_con">
                             <img src="https://m.hanfugou.com/Image/ban_more.png" alt="">              
@@ -23,16 +23,16 @@ export default {
     name:"Chuan",
     data(){
         return{
-            fazanList:[]
+            chuanList:[]
         }
     },
      mounted(){
            this.$nextTick(() => {
                 this.personScroll();
         });
-    axios.get("/api/getfazan").then((res)=>{
-        // console.log(res)
-        this.fazanList=res.data.fazan
+    axios.get("http://192.168.52.94:8080/hanfugou/CXBCD").then((res)=>{
+        console.log(res)
+        this.chuanList=res.data
     })
         
     },
@@ -66,7 +66,7 @@ export default {
 }
 .chuan_scroll{
     display:flex;
-    width: 24rem;
+    width: 15.5rem;
     padding-top:0.1rem;
 }
 .chuan_con{

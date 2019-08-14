@@ -5,7 +5,11 @@
         <div>
              <input type="text">
         </div>
+<<<<<<< HEAD
          <button @click="search()">搜索</button>
+=======
+         <button>搜索</button>
+>>>>>>> fb87072751e8c5442cd5b98fa40c1e906f16d2a1
     </div>
         <div class="shoplist">
             <ul>
@@ -163,5 +167,3 @@ export default {
         /* float: left; */
     }
 </style>
-
-//  https://pic.hanfugou.com/web/2019/5/14/19/1e533dc8bbad474eb1205a15a9e31297.jpg_300x300.jpg
