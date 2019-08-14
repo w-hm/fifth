@@ -1,15 +1,29 @@
 <template>
-     <div class="desc">
+<div>
+     <div class="desc" v-for="details of detailList" :key="details.goodsID">
             <span class="sp_desc">商品描述</span>
                 <span class="content">
-                        累死老子了！！！！累死老子了！！！！
-                         累死老子了！！！！累死老子了！！！！
+                      {{details.goodsDescribe}}
                 </span>
         </div>
+    </div>
 </template>
 <script>
+import axios from "axios"
 export default {
-        name:"Des"
+        name:"Des",
+        data(){
+            return {
+                detailList:[]
+            }
+    },
+      mounted(){
+        //   console.log(this.$route.query.id)
+        axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
+            console.log(res)
+            this.detailList=res.data
+        })
+    } 
 }
 </script>
 <style scoped>

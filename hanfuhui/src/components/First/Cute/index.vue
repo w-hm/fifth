@@ -6,7 +6,7 @@
             <img src="https://m.hanfugou.com/Image/bor_title_2.png" alt="">
         </div>
         <div class="pic_wrap">
-            <div class="pic" v-for="cute of cuteList" :key="cute.goodsID">
+            <router-link class="pic" tag="div" :to="{name:'details',query:{goodsId:cute.goodsID}}" v-for="cute of cuteList" :key="cute.goodsID">
                 <div class="main" >
                     <img :src="cute.goodsPicture" alt="" style="width:3.7rem;height:3.7rem;">
                     <span>{{cute.goodsName}}</span>
@@ -19,7 +19,7 @@
                    ¥ <span class="price">{{cute.goodsPrice}}</span>
                    <span class="glass">{{cute.goodsCollect}}人种草</span>
                </div>
-            </div>      
+            </router-link>      
         </div>
     </div>
 </template>
