@@ -23,11 +23,11 @@ export default {
         return {
             store:"",
             listyle:[
-                {tp:"综合",class:"line"},
-                 {tp:"最新",class:""},
-                  {tp:"种草",class:""},
-                   {tp:"升价",class:""},
-                    {tp:"降价",class:""}
+               {tp:"综合",class:"line",px:'zc',api:"Collect"},
+                 {tp:"最新",class:"",px:"zx",api:"ByTime"},
+                  {tp:"种草",class:"",px:"zc",api:'Collect'},
+                   {tp:"升价",class:"",px:"jgsx",api:'PriceUp'},
+                    {tp:"降价",class:"",px:"jgjx",api:"PriceDown"}
             ]
         }
     },
@@ -62,7 +62,20 @@ export default {
               })
               this._data.listyle[index].class="line"
             //   window.scroll=0.5+"rem"
+                
 
+         let id=this.$route.query.goodsType
+        let px=this._data.listyle[index].px
+        let api=this._data.listyle[index].api
+        console.log(px)
+         let that=this
+         axios.get("http://192.168.52.90:8080/hanfugou/"+api+"?goodsType="+id+"&showType="+px).then(function(res){
+            //  console.log(res.data)
+            console.log(that._data.store)
+             that._data.store=res.data
+             console.log(res.data)
+            //  console.log(that._data.store)
+         })
           }
       },
      mounted() {
@@ -84,14 +97,16 @@ export default {
     
     .shoplist>h3{
         padding: 0.2rem;
+        /* padding-top: 0; */
         font-weight: 100;
         color: #ff6699;
         text-align: center;
     }
-    .shoplist ul{
+    .shoplist>ul{
+        /* position: static; */
         background: white;
         width: 100%;
-        position:fixed;
+        /* position:fixed; */
         top:0;
         display: flex;
         justify-content: space-around;
@@ -107,7 +122,7 @@ export default {
         border-bottom: 4px solid#ff6699;
     }
     .shoplist .listimg  {
-        margin-top: 0.8rem;
+        /* margin-top: 0rem; */
         display: flex;
         flex-wrap:wrap;
         justify-content:space-between;

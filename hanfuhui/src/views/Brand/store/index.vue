@@ -1,7 +1,7 @@
 <template>
     <div class="wrap">
-
         <div class="inp">
+            
            <span></span>店内收搜
         </div>
         <div class="store">
@@ -113,6 +113,7 @@ export default {
         border-top: 0.16rem solid #f4f4f4;
     }
     .store img{
+        display: inline;
         border: 1px solid black;
         width: 1rem;
         height: 1rem;
