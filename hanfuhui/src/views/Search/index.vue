@@ -5,11 +5,7 @@
         <div>
              <input type="text">
         </div>
-<<<<<<< HEAD
-         <button @click="search()">搜索</button>
-=======
          <button>搜索</button>
->>>>>>> fb87072751e8c5442cd5b98fa40c1e906f16d2a1
     </div>
         <div class="shoplist">
             <ul>
