@@ -117,6 +117,13 @@ export default {
 </script>
 
 <style scoped>
+.wrap{
+    position: fixed;
+    left:0.2rem;
+    top: 0.4rem;
+    right: 0.2rem;
+    /* box-shadow: 10px 10px 5px #888888; */
+}
  .foot{
      width: 100%;
      height: 2.5rem;
