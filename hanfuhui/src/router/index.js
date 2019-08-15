@@ -11,6 +11,7 @@ import list from "./list"
 import OrderList from "./OrderList"
 import Details from "./Details"
 import Address from "./Address"
+import Payment from "./Payment"
 
 
 
@@ -40,7 +41,7 @@ export default new Router({
     Details,
     OrderList,
     Address,
-
+    Payment,
     
     {
       path:"*",

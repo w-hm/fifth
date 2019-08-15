@@ -1,10 +1,25 @@
 <template>
 <div class="wrap">
-    
-        <router-link  tag="div" to="/address" class="add_address" >
-            <img src="https://m.hanfugou.com/Image/btn_edit_red.png?v=1" alt="" style="width:0.47rem;height:0.47rem;">
-            <span>添加收货地址</span>
-        </router-link>
+        <div class="change">
+             <router-link v-if="true" tag="div" to="/address" class="add_address" >
+                <img src="https://m.hanfugou.com/Image/btn_edit_red.png?v=1" alt="" style="width:0.47rem;height:0.47rem;">
+                <span>添加收货地址</span>
+            </router-link>
+             <router-link v-else tag="div" to="" class="address_con" >
+                <div class="left">
+                    <div class="people">
+                        <span>收件人：问问</span>
+                        <span class="tel">电话：12365467483</span>      
+                    </div>
+                    <div class="post_add">
+                        收件地址：俄违 法为 罚恶风为
+                    </div>
+                </div>
+                
+                <span class="right">></span>
+            </router-link>
+        </div>
+       
         <div class="stripe">
             <img src="https://m.hanfugou.com/Image/bor_address.png?v=1" alt="" style="height:0.17rem;">
             <img src="https://m.hanfugou.com/Image/bor_address.png?v=1" alt="" style="height:0.17rem;">
@@ -39,9 +54,9 @@
             <div class="pay">
                 实付款：<span> ¥</span> 
             </div>
-            <div class="commit">
+            <router-link  tag="div" to="/payment" class="commit">
                 提交订单
-            </div>
+            </router-link>
         </div>
 
 </div>
@@ -64,6 +79,29 @@ export default {
         color: #ff4466;
         padding-left:0.15rem;
         font-size: 0.33rem;
+    }
+     .wrap .address_con{
+        display: flex;
+        width: 100%;
+        height:1.6rem;
+        background-color: #fff;    
+        justify-content: space-between;
+        align-items: center;  
+        padding:0 0.2rem;  
+    }
+    .wrap .address_con .right{
+        color:grey;
+    }
+    .wrap .address_con .left .people{
+        width: 100%;
+        display: flex;
+    }
+    .wrap .address_con .left .post_add{
+        padding-top:0.1rem;
+        color: grey;
+    }   
+    .wrap .address_con .left .people .tel{
+        padding-left: 2rem;
     }
     .stripe{
         padding: 0.1rem 0;

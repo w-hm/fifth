@@ -9,8 +9,8 @@
                     <img src="https://m.hanfugou.com/Image/icon_shop.png?v=1" alt="" style="width:0.5rem;height:0.4rem;">
                     <span>店铺</span>
                 </div>
-                  <div class="glass">
-                    <img src="https://m.hanfugou.com/Image/icon_save_no.png?v=1" alt="" style="width:0.4rem;height:0.4rem;">
+                  <div class="glass" @click="change">
+                    <img :src="glass?url2:url1" alt="" style="width:0.4rem;height:0.4rem;">
                     <span>种草</span>
                 </div>
             </div>
@@ -25,7 +25,8 @@
         <div class="success" v-if="shows">
             {{success}}
         </div>
-        </div>
+       
+     </div>
 </template>
 <script>
 import axios from "axios"
@@ -34,17 +35,21 @@ export default {
 
     data(){
         return {
+            cancel:false,
             code:"",
             shows:false,
             success:"",
-            storeId:""
+            storeId:"",
+            glass:false,
+            url1:"https://m.hanfugou.com/Image/icon_save_no.png?v=1",
+            url2:"https://m.hanfugou.com/Image/icon_save_yes.png?v=1"
         }
     },
     mounted(){
         console.log(this.$route)
          axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
-            console.log(res)
-            this.storeId=res.data.storeId
+            console.log(res.data[0].storeId)
+            this.storeId=res.data[0].storeId
         })
       
     },
@@ -77,14 +82,26 @@ export default {
         },
         
         immediate(){
+            console.log(this.storeId)
             if(sessionStorage.token){
-                axios.post("http://localhost:8090/hanfugou/orderQueryAllByUserIdAndGoodsId?userId="+sessionStorage.userid+"&goodsId="+this.$route.query.goodsId,{}).then((res)=>{
+                this.$router.push({path:"/orderList"})
+                axios.post("http://192.168.52.93:8090/hanfugou/orderInsert?userId="+sessionStorage.userid+"&goodsId="+this.$route.query.goodsId+"&storeId="+this.storeId+"&addressId=1&buyNumber=1",{}).then((res)=>{
                     console.log(res)
                 })
 
             }else{
                 this.$router.push({path:"/mine"})
             }
+        },
+       
+        change(){
+
+            if(sessionStorage.token){
+                this.glass=!this.glass
+            }else{
+
+            }
+
         }
     }
 }
@@ -118,6 +135,9 @@ export default {
         left: 0;
         width: 100%;
     }
+  
+    
+    
     .footer{
          box-shadow: 0 -1px 20px lightgrey;
     }

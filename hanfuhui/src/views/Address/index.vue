@@ -1,24 +1,21 @@
 <template>
     <div class="wrap">
         
-      <input type="text" placeholder="收件人">
-       <input type="text" placeholder="联系电话">
+      <input type="text" placeholder="收件人" v-model="addressReceivePeople">
+       <input type="text" placeholder="联系电话" v-model="addressReceivePeople">
         <select class="city">
                 <option value="">请选择</option>
-                <option value="">dd</option>
-                <option value="">dds</option>
+                <option value="">{{province}}</option>               
         </select>
         <select class="xian">
                 <option value="">请选择市</option>
-                <option value="">dd</option>
-                <option value="">dds</option>
+                <option value="">{{city}}</option>
         </select>
            <select class="qu">
                 <option value="">请选择县/区</option>
-                <option value="">dd</option>
-                <option value="">dds</option>
+                <option value="">{{county}}</option>
         </select>
-         <input type="text" placeholder="详细地址">
+         <input type="text" placeholder="详细地址" v-model="addressDetail">
        <div class="set" @click="change">
            <img :src="def_address?url1:url2" alt="" style="width:0.4rem;height:0.4rem;">
            <span>设为默认地址</span>
@@ -36,7 +33,13 @@ export default {
         return{
             def_address:true,
             url1:"https://m.hanfugou.com/Image/check_no.png?v=1",
-            url2:"https://m.hanfugou.com/Image/check_yes.png?v=1"
+            url2:"https://m.hanfugou.com/Image/check_yes.png?v=1", 
+            addressReceivePeople:"",
+            addressTel:"",
+            addressDetail:"",
+            province:"湖北省",
+            city:"武汉市",
+            county:"江夏区",
         }
     },
     methods:{
