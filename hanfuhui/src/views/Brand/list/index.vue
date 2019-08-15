@@ -43,7 +43,7 @@ export default {
 
 
          let that=this
-         axios.get("http://192.168.52.90:8080/hanfugou/InChest?goodsType="+id).then(function(res){
+         axios.get("http://192.168.52.9*- 0:8080/hanfugou/InChest?goodsType="+id).then(function(res){
              console.log(res.data)
              that._data.store=res.data
              console.log(that._data.store)
@@ -52,7 +52,7 @@ export default {
       methods:{
           godetail(item){
               console.log(item.goodsID)
-              this.$router.push({path:'/details',query:{goodsid:item.goodsID}});
+              this.$router.push({path:'/details',query:{goodsId:item.goodsID}});
           },
           libt(index){
 

@@ -57,6 +57,15 @@ export default {
            
         }
     },
+    created:function(){
+       var username=sessionStorage.username
+        console.log(username)
+        this.username=username
+        console.log(this.username)
+        if(!this.username){
+            this.tip="请先登录"
+        }
+    },
     methods:{
         login(){
             if(!this.tel){
@@ -67,6 +76,7 @@ export default {
             axios.post("http://192.168.52.94:8080/hanfugou/login?tel="+this.tel+"&pwd="+this.pwd)
             .then(res=>{
                 // console.log(res.data);
+                
                 console.log(res.data)
                 if(res.data.code==3){
                     this.tip="用户名与密码不匹配"
@@ -76,9 +86,11 @@ export default {
                     
                 }
                 if(res.data.code==1){
+
                     this.tip="登录成功"
-                    sessionStorage.username=res.data.username
+                    sessionStorage.username=res.data.userName
                     sessionStorage.token=res.data.token
+                     sessionStorage.userid=res.data.userId
                     
                 }
                 // if(!!res.data.type){
