@@ -19,32 +19,96 @@
                 加入购物车
             </div>
 
-            <div class="pay">
+            <div @click="immediate" class="pay">
                 立即剁手
             </div>
-
+        <div class="success" v-if="shows">
+            {{success}}
+        </div>
         </div>
 </template>
 <script>
+import axios from "axios"
 export default {
     name:"TabBar",
 
     data(){
         return {
-
+            code:"",
+            shows:false,
+            success:"",
+            storeId:""
         }
     },
     mounted(){
-        console.log(this.$route.query)
+        console.log(this.$route)
+         axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
+            console.log(res)
+            this.storeId=res.data.storeId
+        })
+      
     },
     methods:{
-        addShopping(){
-          
+        addShopping(){          
+            if(sessionStorage.token){
+                axios.post("http://192.168.52.94:8080/hanfugou/insertShopping?shoppingId="+this.$route.query.goodsId+"&shoppingUserId="+sessionStorage.userid+"&shoppingNum=1",{}).then((res)=>{     
+                        this.code=res.data
+                })
+                setTimeout(()=>{
+                    if(this.code==="yes"){
+                        this.shows=true
+                        this.success="添加成功"
+                        setTimeout(()=>{
+                            this.shows=false
+                        },1000)
+                    }else{
+                        this.shows=true
+                        this.success="添加失败"
+                          setTimeout(()=>{
+                            this.shows=false
+                        },1000)
+                    }
+                },500)
+                 
+            }else{
+                this.$router.push({path:"/mine"})
+            }
+           
+        },
+        
+        immediate(){
+            if(sessionStorage.token){
+                axios.post("http://localhost:8090/hanfugou/orderQueryAllByUserIdAndGoodsId?userId="+sessionStorage.userid+"&goodsId="+this.$route.query.goodsId,{}).then((res)=>{
+                    console.log(res)
+                })
+
+            }else{
+                this.$router.push({path:"/mine"})
+            }
         }
     }
 }
 </script>
 <style scoped>
+    .success{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        left: 50%;
+        top:50%;
+        margin-left: -1rem;
+        margin-top: -0.6rem;
+        border:1px solid black;
+        border-radius: 10px;
+        color: white;
+        width: 2rem;
+        height: 1.1rem;;
+        background:rgba(0, 0, 0, 0.6) ;       
+      }
+
+
+
      .footer{
         display: flex;
         border-top: 1px solid lightgray;
@@ -53,6 +117,9 @@ export default {
         bottom: 0;
         left: 0;
         width: 100%;
+    }
+    .footer{
+         box-shadow: 0 -1px 20px lightgrey;
     }
     .footer .three{
          display: flex;

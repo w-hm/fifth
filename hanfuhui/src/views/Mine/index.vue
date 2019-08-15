@@ -77,8 +77,9 @@ export default {
                 }
                 if(res.data.code==1){
                     this.tip="登录成功"
-                    sessionStorage.username=res.data.username
+                    sessionStorage.username=res.data.userName
                     sessionStorage.token=res.data.token
+                    sessionStorage.userid=res.data.userId
                     
                 }
                 // if(!!res.data.type){
@@ -163,5 +164,3 @@ export default {
   
 </style>
   
-
->>>>>>> c1007291843f9b9c0058cbdf3208670ecf119f53

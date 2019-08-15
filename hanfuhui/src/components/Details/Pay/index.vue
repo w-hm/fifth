@@ -19,7 +19,7 @@
         </div>
 
         <div class="select" onclick="selected">
-            <span>选择 颜色 尺码</span>
+            <span>默认 白色 </span>
             <span class="you">></span>
         </div>
 

@@ -8,8 +8,9 @@ import Mine from "./Mine"
 import Shoppingcart from "./Shoppingcart"
 import store from "./store"
 import list from "./list"
-import detail from "./detail"
+import OrderList from "./OrderList"
 import Details from "./Details"
+import Address from "./Address"
 
 
 
@@ -30,7 +31,6 @@ export default new Router({
   routes: [
     store,
     list,
-    detail,
     First,
     Search,
     Brand,
@@ -38,6 +38,8 @@ export default new Router({
     Shoppingcart,
     Mine,
     Details,
+    OrderList,
+    Address,
 
     
     {

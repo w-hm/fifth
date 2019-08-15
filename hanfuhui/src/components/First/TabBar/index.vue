@@ -29,7 +29,7 @@ export default {
   color: grey;
   width: 100%;
   height: 1.1rem;
-  border-top: 1px solid lightgray;
+  box-shadow: 0 -1px 20px lightgrey;
   padding: 0.1rem 0;
   background-color: white;
   position: fixed;

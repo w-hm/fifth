@@ -8,10 +8,10 @@
                 <img src="https://m.hanfugou.com/Image/icon_u_cart.png?v=1" alt="" style="width:0.7rem;height:0.7rem;">
                 <span>购物车</span>
             </router-link>
-            <div class="mine">
+            <router-link  tag="div" to="/mine" class="mine">
                 <img src="https://m.hanfugou.com/Image/icon_user_def.png?v=1" alt="" style="width:0.7rem;height:0.7rem;">
                 <span>个人中心</span>
-            </div>
+            </router-link>
         </div>
 </template>
 <script>
@@ -23,7 +23,7 @@ export default {
      .header{
         display: flex;
         padding: 0.3rem 0.1rem;
-        border-bottom: 1px solid lightgray;
+         box-shadow: 0 3px 10px lightgrey;
         width: 100%;
         background-color: #fff;
         position: fixed;
