@@ -1,7 +1,7 @@
 <template>
     
      <div class="chuan">
-             <img src="https://pic.hanfugou.com/web/2019/8/3/1/0350d0715ba44443abad59bc23a2c77a.png_min.jpg" alt="">          
+             <img src="https://pic.hanfugou.com/web/2019/8/3/1/0350d0715ba44443abad59bc23a2c77a.png_min.jpg" alt="" style="width:100%;">          
             <div class="chuan_products" ref="fzan"> 
                 <div class="chuan_scroll" >              
                     <router-link tag="div" :to="{name:'details',query:{goodsId:chuan.goodsID}}" class="chuan_con" v-for="chuan of chuanList" :key="chuan.goodsID">
@@ -30,7 +30,7 @@ export default {
            this.$nextTick(() => {
                 this.personScroll();
         });
-    axios.get("http://192.168.52.94:8080/hanfugou/CXBCD").then((res)=>{
+    axios.get("/hanfugou/CXBCD").then((res)=>{
         console.log(res)
         this.chuanList=res.data
     })

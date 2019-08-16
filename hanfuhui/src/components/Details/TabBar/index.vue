@@ -46,9 +46,9 @@ export default {
         }
     },
     mounted(){
-        console.log(this.$route)
-         axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
-            console.log(res.data[0].storeId)
+        // console.log(this.$route)
+         axios.get("hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
+            // console.log(res.data[0].storeId)
             this.storeId=res.data[0].storeId
         })
       
@@ -56,7 +56,7 @@ export default {
     methods:{
         addShopping(){          
             if(sessionStorage.token){
-                axios.post("http://192.168.52.94:8080/hanfugou/insertShopping?shoppingId="+this.$route.query.goodsId+"&shoppingUserId="+sessionStorage.userid+"&shoppingNum=1",{}).then((res)=>{     
+                axios.post("/hanfugou/insertShopping?shoppingId="+this.$route.query.goodsId+"&shoppingUserId="+sessionStorage.userid+"&shoppingNum=1",{}).then((res)=>{     
                         this.code=res.data
                 })
                 setTimeout(()=>{
@@ -82,10 +82,10 @@ export default {
         },
         
         immediate(){
-            console.log(this.storeId)
+            // console.log(this.storeId)
             if(sessionStorage.token){
-                this.$router.push({path:"/orderList"})
-                axios.post("http://192.168.52.93:8090/hanfugou/orderInsert?userId="+sessionStorage.userid+"&goodsId="+this.$route.query.goodsId+"&storeId="+this.storeId+"&addressId=1&buyNumber=1",{}).then((res)=>{
+                this.$router.push({path:"/orderList",query:{goodsId:this.$route.query.goodsId}})
+                axios.post("/hanfugou/orderInsert?userId="+sessionStorage.userid+"&goodsId="+this.$route.query.goodsId+"&storeId="+this.storeId+"&addressId=1&buyNumber=1",{}).then((res)=>{
                     console.log(res)
                 })
 
@@ -95,7 +95,6 @@ export default {
         },
        
         change(){
-
             if(sessionStorage.token){
                 this.glass=!this.glass
             }else{

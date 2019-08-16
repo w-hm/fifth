@@ -118,8 +118,12 @@ export default {
                 return
             }
             // console.log(this.loginInfo)
+<<<<<<< HEAD
             
             axios.post("/hanfugou/login?tel="+this.tel+"&pwd="+this.pwd)
+=======
+            axios.post("http://106.52.180.178/hanfugou/login?tel="+this.tel+"&pwd="+this.pwd)
+>>>>>>> e91d0f320f7ed900fde7b112ff902364cda2d9e7
             .then(res=>{
                 // console.log(res.data);
                 
@@ -154,7 +158,7 @@ export default {
             // console.log(axios)
                 var that=this
                 // console.log(this.name,this.tel,this.pwd)
-                axios.post("http://192.168.52.94:8080/hanfugou/regist?name="+this.name+"&tel="+this.tel+"&pwd="+this.pwd,{name:this.name,tel:this.tel,pwd:this.pwd}).then(res=>{
+                axios.post("/hanfugou/regist?name="+this.name+"&tel="+this.tel+"&pwd="+this.pwd,{name:this.name,tel:this.tel,pwd:this.pwd}).then(res=>{
                 // console.log(res.data);
                 console.log(that)
                 if(res.data==1){
@@ -187,7 +191,7 @@ export default {
     left:0.2rem;
     top: 0.4rem;
     right: 0.2rem;
-    /* box-shadow: 10px 10px 5px #888888; */
+   
 }
  .foot{
      width: 100%;

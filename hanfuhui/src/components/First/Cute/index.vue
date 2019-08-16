@@ -33,7 +33,7 @@ export default {
         }
     },
     mounted(){
-        axios.get("http://192.168.52.94:8080/hanfugou/jxmwShow").then((res)=>{
+        axios.get("/hanfugou/jxmwShow").then((res)=>{
             console.log(res)
             this.cuteList=res.data
         })

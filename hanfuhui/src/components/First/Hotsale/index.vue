@@ -27,7 +27,7 @@ export default {
         }
     },
     mounted(){
-        axios.get("http://192.168.52.94:8080/hanfugou/BzrmGoods").then((res)=>{
+        axios.get("/hanfugou/BzrmGoods").then((res)=>{
             console.log(res)
             this.hotList=res.data
         })

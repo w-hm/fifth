@@ -1,7 +1,7 @@
 <template>
     
      <div class="hanfu">
-             <img src="https://pic.hanfugou.com/web/2019/7/25/15/aa615cfa36ed44f5a00252a8bbb926dc.png_min.jpg" alt="">          
+             <img src="https://pic.hanfugou.com/web/2019/7/25/15/aa615cfa36ed44f5a00252a8bbb926dc.png_min.jpg" alt="" style="width:100%;">          
             <div class="hanfu_products" ref="fzan"> 
                 <div class="hanfu_scroll" >              
                     <router-link tag="div" :to="{name:'details',query:{goodsId:han.goodsID}}" class="hanfu_con" v-for="han of hanfuList" :key="han.goodsID">
@@ -30,7 +30,7 @@ export default {
            this.$nextTick(() => {
                 this.personScroll();
         });
-    axios.get("http://192.168.52.94:8080/hanfugou/CLGHF").then((res)=>{
+    axios.get("/hanfugou/CLGHF").then((res)=>{
         // console.log(res)
         this.hanfuList=res.data
     })
