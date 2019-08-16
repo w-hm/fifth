@@ -45,7 +45,7 @@ export default {
     },
      created(){
          let that=this
-         axios.get("http://192.168.52.94:8080/hanfugou/showStore?sid="+this.$route.params.storeId).then(function(res){
+         axios.get("/hanfugou/showStore?sid="+this.$route.params.storeId).then(function(res){
              console.log(res.data)
             
              that._data.store=res.data[0]
@@ -68,7 +68,7 @@ export default {
             //   window.scroll=0.5+"rem"
               let that=this
               let px=this._data.listyle[index].px
-         axios.get("http://192.168.52.94:8080/hanfugou/"+px+"ShowStore?sid="+this.$route.params.storeId).then(function(res){
+         axios.get("/hanfugou/"+px+"ShowStore?sid="+this.$route.params.storeId).then(function(res){
              console.log(res.data)
             
              that._data.store=res.data[0];
