@@ -65,7 +65,7 @@ export default {
             this.titlelist[index].flag="special"
             console.log(item.ty)
              var that=this;
-        axios.get("http://192.168.52.94:8080/hanfugou/HotStore?storeType="+item.ty).then(function(res){
+        axios.get("/hanfugou/HotStore?storeType="+item.ty).then(function(res){
             console.log(res.data)
             console.log(that._data.mainlist)
             that._data.mainlist=res.data //更新
@@ -83,7 +83,7 @@ export default {
     created:function(){
         // console.log(this._data.mainlist)
         var that=this;
-        axios.get("http://192.168.52.94:8080/hanfugou/HotStore?storeType="+"rmdp").then(function(res){
+        axios.get("/hanfugou/HotStore?storeType="+"rmdp").then(function(res){
 
         
             console.log(that._data.mainlist)

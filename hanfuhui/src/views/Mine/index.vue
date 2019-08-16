@@ -118,7 +118,8 @@ export default {
                 return
             }
             // console.log(this.loginInfo)
-            axios.post("http://192.168.52.94:8080/hanfugou/login?tel="+this.tel+"&pwd="+this.pwd)
+            
+            axios.post("/hanfugou/login?tel="+this.tel+"&pwd="+this.pwd)
             .then(res=>{
                 // console.log(res.data);
                 

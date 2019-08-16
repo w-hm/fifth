@@ -43,7 +43,7 @@ export default {
 
 
          let that=this
-         axios.get("http://192.168.52.90:8080/hanfugou/InChest?goodsType="+id).then(function(res){
+         axios.get("/hanfugou/InChest?goodsType="+id).then(function(res){
              console.log(res.data)
              that._data.store=res.data
              console.log(that._data.store)
@@ -69,7 +69,7 @@ export default {
         let api=this._data.listyle[index].api
         console.log(px)
          let that=this
-         axios.get("http://192.168.52.90:8080/hanfugou/"+api+"?goodsType="+id+"&showType="+px).then(function(res){
+         axios.get("/hanfugou/"+api+"?goodsType="+id+"&showType="+px).then(function(res){
             //  console.log(res.data)
             console.log(that._data.store)
              that._data.store=res.data

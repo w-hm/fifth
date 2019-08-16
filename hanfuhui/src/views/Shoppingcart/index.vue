@@ -5,7 +5,10 @@
         </div>
         <div class="main">
             <div class="goods"  v-for="(item,index) in data" :key="index">
-                <div class="radio" :class="{cssred:flag}" v-on:click="show"></div>
+                <label :class="{red: item.checked,radio:true}"  v-on:click="pickOne($event, item,index)">
+                    <input type="checkbox" :checked="item.checked"   ref="da" >
+                    
+                </label>
                <div class="img"><img :src="item.shoppingimg" alt=""></div>
                <div class="box">
                    <p>{{item.shoppingStoreName}}<span v-on:click="del(item,index)">删除</span></p>
@@ -17,10 +20,12 @@
             </div>
         </div>
         <div class="foot">
-            <div class="radio"></div>
-            <p>全选</p>
+            <label for="changes" :class="{radio:true,red:flag}">
+                <input id="changes" type="checkbox" v-model="flag" @click="pickAll">
+            </label>
+            <p >全选</p>
             <p>共计</p>
-            <div class="bon">
+            <div class="bon" v-on:click="bon">
                 结算
             </div>
         </div>
@@ -32,13 +37,59 @@ export default {
     name:"Shoppingcart",
     data:function(){
         return {
-            
+            style:[],
+            flag:false,
             username:"",
-            data:"",
-            flag:false
+                                   
+            data:[],
+        
+            
         }
     },
     methods:{
+        //全选
+        pickOne(event, item,index){
+            console.log(item)
+            
+            item.checked = event.target.checked;
+             let fg=true
+            // console.log(this.data)
+            // console.log(item)
+            this.data.forEach(check=>{
+                if(!check.checked){
+                    fg=false
+                }
+            })
+            if(fg){
+                this.flag=true
+            }else{
+                this.flag=false
+            }
+        },
+        pickAll(){
+            this.style=this.$refs.da
+            if(!this.flag){
+            // console.log(this.flag)
+            // console.log(this.da)
+            this.data.forEach(item=>{
+                // console.log(111)
+                
+                item.checked=true
+              console.log(item.checked)
+            })
+            }else{
+                 this.data.forEach(item=>{
+                // console.log(111)
+                item.checked=false
+              console.log(item.checked)
+            })
+            }
+            
+            console.log(this.da)
+        },
+        bon(){
+            console.log(this.$refs.da)
+        },
         show(){},
         del(item,index){
             let userid=sessionStorage.userid;
@@ -46,7 +97,7 @@ export default {
 
             console.log(userid,item.shoppingId)
         let that=this
-        axios.post("http://192.168.52.94:8080/hanfugou/DeleteShopping?shoppingUserId="+userid+"&shoppingIds="+item.shoppingId).then((res)=>{
+        axios.post("/hanfugou/DeleteShopping?shoppingUserId="+userid+"&shoppingIds="+item.shoppingId).then((res)=>{
         console.log(res.data)
         if(res.data){
             console.log(that.data)
@@ -64,7 +115,7 @@ export default {
             let userid=sessionStorage.userid;
             let username=sessionStorage.username;
             console.log(userid,item.shoppingId)
-        axios.post("http://192.168.52.94:8080//hanfugou/minusShoppingNum?shoppingId="+item.shoppingId+"&shoppingUserId="+userid).then((res)=>{
+        axios.post("/hanfugou/minusShoppingNum?shoppingId="+item.shoppingId+"&shoppingUserId="+userid).then((res)=>{
         // console.log(res.data)
         // that._data.data=res.data
          if(res.data){
@@ -78,7 +129,7 @@ export default {
             console.log(userid,item.shoppingId)
 
             let that=this
-        axios.post("http://192.168.52.94:8080//hanfugou/addShoppingNum?shoppingId="+item.shoppingId+"&shoppingUserId="+userid ).then((res)=>{
+        axios.post("/hanfugou/addShoppingNum?shoppingId="+item.shoppingId+"&shoppingUserId="+userid ).then((res)=>{
         console.log(res.data)
         // console.log(item,index)
         if(res.data){
@@ -89,26 +140,40 @@ export default {
         }
 
     },
+    computed:{
+        con(){
+           
+        }
+    },
     mounted:function(){
         let userid=sessionStorage.userid;
         let username=sessionStorage.username;
-
         // console.log(userid)
         this.username=username
-        if(!this.username){
-            this.$router.push("/Mine")
-        }
+        // if(!this.username){
+        //     this.$router.push("/Mine")
+        // }
         let that=this
-    axios.post("http://192.168.52.94:8080/hanfugou/ShowShopping?shoppingUserId="+userid).then((res)=>{
+    axios.post("/hanfugou/ShowShopping?shoppingUserId="+userid).then((res)=>{
         console.log(res.data)
         // console.log(that)
-        that._data.data=res.data
+        let data=res.data
+        data.forEach(item=>{
+            item.checked=false
+        })
+        that._data.data=data
     })
     }
     
 }
 </script>
 <style scoped>
+.red{
+    background: red;
+}
+.goods input{
+    display: none;
+}
 .flag{
     background: red;
 }
@@ -134,6 +199,10 @@ export default {
     /* padding-right: 0.2rem; */
     position: relative;
     margin-bottom: 0.2rem;
+}
+.main .goods input{
+    width: 0.3rem;
+    height: 0.3rem;
 }
 .main .goods .radio{
     width: 0.5rem;
@@ -216,6 +285,11 @@ export default {
     height: 0.5rem;
     border-radius: 50%;
     border: 1px solid black
+}
+.foot .radio input{
+    width: 0.3rem;
+    height: 0.3rem;
+    display: none;
 }
 .foot p{
 
