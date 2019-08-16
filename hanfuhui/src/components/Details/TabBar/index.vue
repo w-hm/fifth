@@ -56,7 +56,7 @@ export default {
     methods:{
         addShopping(){          
             if(sessionStorage.token){
-                axios.post("http://192.168.52.94:8080/hanfugou/insertShopping?shoppingId="+this.$route.query.goodsId+"&shoppingUserId="+sessionStorage.userid+"&shoppingNum=1",{}).then((res)=>{     
+                axios.post("/hanfugou/insertShopping?shoppingId="+this.$route.query.goodsId+"&shoppingUserId="+sessionStorage.userid+"&shoppingNum=1",{}).then((res)=>{     
                         this.code=res.data
                 })
                 setTimeout(()=>{
