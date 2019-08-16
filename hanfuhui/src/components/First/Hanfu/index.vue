@@ -30,7 +30,7 @@ export default {
            this.$nextTick(() => {
                 this.personScroll();
         });
-    axios.get("http://192.168.52.94:8080/hanfugou/CLGHF").then((res)=>{
+    axios.get("/hanfugou/CLGHF").then((res)=>{
         // console.log(res)
         this.hanfuList=res.data
     })

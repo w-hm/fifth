@@ -1,21 +1,20 @@
 <template>
 <div class="wrap">
         <div class="change">
-             <router-link v-if="true" tag="div" to="/address" class="add_address" >
+             <router-link v-if="shows" tag="div" to="/address" class="add_address" >
                 <img src="https://m.hanfugou.com/Image/btn_edit_red.png?v=1" alt="" style="width:0.47rem;height:0.47rem;">
                 <span>添加收货地址</span>
             </router-link>
              <router-link v-else tag="div" to="" class="address_con" >
                 <div class="left">
                     <div class="people">
-                        <span>收件人：问问</span>
-                        <span class="tel">电话：12365467483</span>      
+                        <span>收件人：{{all_address.userId}}</span>
+                        <span class="tel">电话：{{all_address.Tel}}</span>       
                     </div>
                     <div class="post_add">
-                        收件地址：俄违 法为 罚恶风为
+                        收件地址：{{all_address.province}}  {{all_address.city}}  {{all_address.county}} {{all_address.address}}
                     </div>
-                </div>
-                
+                </div>               
                 <span class="right">></span>
             </router-link>
         </div>
@@ -28,15 +27,15 @@
             <img src="https://m.hanfugou.com/Image/bor_address.png?v=1" alt="" style="height:0.17rem;">
         </div>
         <div class="main">
-            <span class="title">流烟昔泠</span>
+            <span class="title">{{product_info.storeName}}</span>
             <div class="product">
-                <img src="http://pic.hanfugou.com/web/2019/6/13/18/f25c90f13de942a5ba7c9e7f8b35e7c5.jpg_150x150.jpg" alt="" style="width:2rem;height:1.8rem;">
+                <img :src="product_info.goodsPicture" alt="" style="width:2rem;height:1.8rem;">
                 <div class="pro_detail">
-                    <span class="desc">【流烟昔泠-暮星】春夏传统汉服女装星象云纹刺绣齐胸襦裙套装</span>
-                    <span class="style">暮星套装 9月10号发货,L</span>
+                    <span class="desc">{{product_info.goodsName}}</span>
+                    <span class="style">{{product_info.goodsStyle}}  {{product_info.goodsSize}}</span>
                     <div class="pre_num">
-                        <span class="price">¥ 398.00</span>
-                        <span class="num">x1</span>
+                        <span class="price">¥ {{product_info.goodsPrice}}</span>
+                        <span class="num">x{{product_info.orderBuyNumber}}</span>
                     </div>
                 </div>
             </div>
@@ -46,7 +45,7 @@
             </div>
             <div class="total">
                 <span class="total_name">小计：</span>
-                <span class="total_price">¥ 398.00</span>
+                <span class="total_price">¥ {{product_info.goodsPrice}}</span>
             </div>
         </div>
 
@@ -54,19 +53,87 @@
             <div class="pay">
                 实付款：<span> ¥</span> 
             </div>
-            <router-link  tag="div" to="/payment" class="commit">
+            <div  @click="commit" class="commit">
                 提交订单
-            </router-link>
+            </div>
         </div>
-
+        <div class="box" v-if="boxs">
+            请填写收货地址，听见了没有！
+        </div>
 </div>
 </template>
 <script>
+import axios from "axios"
 export default {
-    name:"OrderList"
+    name:"OrderList",
+    
+
+    data(){
+        return{
+            all_address:[],
+            product_info:[],
+            shows:true,
+            boxs:false,
+        }
+    },
+    
+    created(){
+       
+    },
+    mounted(){        
+        
+    //    console.log(this.all_address)
+        axios.get("/hanfugou/orderQueryAllByUserIdAndGoodsId?userId="+sessionStorage.userid+"&goodsId="+this.$route.query.goodsId).then((res)=>{
+            this.product_info=res.data[0]
+            // console.log(this.product_info)
+        })  
+        // console.log(this.all_address)
+       if(sessionStorage.all_address){
+        //    console.log(sessionStorage.all_address)
+           this.shows=false
+         this.all_address=JSON.parse(sessionStorage.all_address)
+       } 
+    },
+    methods:{
+        
+        commit(){
+            
+            if(this.shows){
+                this.boxs=true
+                // console.log(!this.boxs)
+                console.log(this.boxs)
+                setTimeout(()=>{
+                    this.boxs=false
+                },1000)
+            }else{
+                this.$router.push({path:"/payment"})
+            }
+        },
+        
+    }
+
 }
 </script>
 <style scoped>
+.wrap{
+    position: relative;
+}
+.wrap .box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 5rem;
+    height: 3rem;
+    margin-left: -2.5rem;
+    margin-top: 1.5rem;
+    background: rgba(0,0,0,0.4);
+    color: #fff;
+    font-size: 0.35rem;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
     .wrap .add_address{
         display: flex;
         width: 100%;
@@ -93,16 +160,15 @@ export default {
         color:grey;
     }
     .wrap .address_con .left .people{
-        width: 100%;
+        width: 6.8rem;
         display: flex;
+        justify-content: space-between;
+        
     }
     .wrap .address_con .left .post_add{
         padding-top:0.1rem;
         color: grey;
     }   
-    .wrap .address_con .left .people .tel{
-        padding-left: 2rem;
-    }
     .stripe{
         padding: 0.1rem 0;
         display: flex;

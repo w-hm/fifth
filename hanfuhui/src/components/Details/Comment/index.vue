@@ -34,7 +34,7 @@ export default {
     },
       mounted(){
         //   console.log(this.$route.query.id)
-        axios.get("http://192.168.52.93:8090/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
+        axios.get("/hanfugou/goodsBuy?goodsId="+this.$route.query.goodsId).then((res)=>{
             console.log()
             this.detailList=res.data[0].comments
             this.styleList=res.data

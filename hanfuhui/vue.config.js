@@ -1,0 +1,11 @@
+module.exports={
+    devServer:{
+        port:80,
+        proxy:{
+            "/hanfugou":{
+                target:"http://106.52.180.178",
+                changeOrigin:true
+            }
+        }
+    }
+}
