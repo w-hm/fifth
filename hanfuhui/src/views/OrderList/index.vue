@@ -51,7 +51,7 @@
 
         <div class="tabbar">
             <div class="pay">
-                实付款：<span> ¥</span> 
+                实付款：<span> {{product_info.goodsPrice}}¥</span> 
             </div>
             <div  @click="commit" class="commit">
                 提交订单
