@@ -118,12 +118,7 @@ export default {
                 return
             }
             // console.log(this.loginInfo)
-<<<<<<< HEAD
-            
             axios.post("/hanfugou/login?tel="+this.tel+"&pwd="+this.pwd)
-=======
-            axios.post("http://106.52.180.178/hanfugou/login?tel="+this.tel+"&pwd="+this.pwd)
->>>>>>> e91d0f320f7ed900fde7b112ff902364cda2d9e7
             .then(res=>{
                 // console.log(res.data);
                 
