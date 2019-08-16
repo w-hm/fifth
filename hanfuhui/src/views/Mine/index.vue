@@ -309,7 +309,7 @@ export default {
 }
 #ol li img{
     display: inline;
-    width: 50%;
+    width:50%;
 }
 #ul h4{
      margin-top: 0.04rem;
