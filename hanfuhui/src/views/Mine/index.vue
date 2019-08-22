@@ -83,8 +83,8 @@ export default {
         return {
             show:true,
             selected:"login",  
-            tel:"13407140934",
-            pwd:"814892235",
+            tel:"",
+            pwd:"",
             name:"",
             tip:"",
             flag:"",
@@ -182,10 +182,9 @@ export default {
 
 <style scoped>
 .wrap{
-    position: fixed;
-    left:0.2rem;
-    top: 0.4rem;
-    right: 0.2rem;
+   padding: 0 0.3rem;
+    background-color: #fff;
+    box-shadow: 1px 1px 15px grey;
    
 }
  .foot{
@@ -238,6 +237,7 @@ export default {
        height: 0.3rem;
        text-align: center; */
        font-size: 0.3rem;
+       color: #fff;
    } 
     
   .u_head img{

@@ -76,7 +76,7 @@ export default {
       },
 
       countDown(){
-          const endtime=new Date("2019-8-17")
+          const endtime=new Date("2019-9-17")
         //   console.log(endtime)
         const nowtime=new Date();
         let leftTime=parseInt((endtime.getTime()-nowtime.getTime())/1000)
@@ -88,7 +88,7 @@ export default {
         if(leftTime<=0){
             this.flag=true
         }
-        this.time=`${day}天${hours}时${minute}分${second}秒 后项目结束`
+        this.time=`${day}天${hours}时${minute}分${second}秒 后结束`
         
       },
       
