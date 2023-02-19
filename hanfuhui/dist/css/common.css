@@ -1,0 +1,8 @@
+*{padding: 0;margin: 0;box-sizing: border-box}
+html,body{
+    background-color: #f4f4f4;
+    
+}
+.wrap{
+    font-size: 0.3rem;
+}
